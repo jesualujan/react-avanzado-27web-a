@@ -1,4 +1,4 @@
-
+import logo from '../../assets/react.svg'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
@@ -8,7 +8,7 @@ import * as yup from "yup";
 const ReactHookForm = () => {
     //* NUESTRA LÓGICA | CREACION DEL ESQUEMA DEL FORMULARIO DE USUARIO UTILANZO YUP, PARA VALIDAR NUESTROS CAMPOS 
 
-     const userFormSchema = yup.object({
+    const userFormSchema = yup.object({
       firstName: yup.string().required('Escribe tu nombre'),
       lastName: yup.string().required('Escribe tu apellido') ,
       age: yup.number().positive('La edad de ser un número positivo').integer('Ingresa tu edad'),
@@ -36,7 +36,7 @@ const ReactHookForm = () => {
     //? Paso #1: Crear el formulario base en JSX
     <div className='login'>
       <div className='login-container'>
-       
+      <img src={logo} alt='logo' />
         <form
           onSubmit={handleSubmit(onSubmit)}
           style={{ display: 'flex', flexDirection: 'column' }}
@@ -98,7 +98,7 @@ const ReactHookForm = () => {
             id='password'
             {...register('password')}
           />
-           <p>{errors.email?.message}</p>
+           <p>{errors.password?.message}</p>
 
           <button type='submit'>
             Registrar
