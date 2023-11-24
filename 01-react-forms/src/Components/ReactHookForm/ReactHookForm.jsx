@@ -41,7 +41,6 @@ const ReactHookForm = () => {
           onSubmit={handleSubmit(onSubmit)}
           style={{ display: 'flex', flexDirection: 'column' }}
         >
-        
           <label htmlFor='firstName'>Nombre</label>
           <input
             type='text'
