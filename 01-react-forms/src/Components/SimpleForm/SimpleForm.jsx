@@ -1,4 +1,4 @@
-
+import logo from '../../assets/react.svg'
 import { useState } from 'react'
 
 const SimpleForm = () => {
@@ -17,8 +17,8 @@ const SimpleForm = () => {
     //? PASO #1: CREAR EL FORMULARIO BASE JSX
     <div className='login'>
     <div className='login-container'>
-      
-      
+   <br />
+    <img src={logo} alt='logo' />  
       <form onSubmit={handleSubmit}>
         {/* PASO #3: GUARDAR LA INFORMACION EN EL ESTADO DE  */}
         <label htmlFor='email'>Email</label>
