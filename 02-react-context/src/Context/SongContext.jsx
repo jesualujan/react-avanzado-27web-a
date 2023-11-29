@@ -16,7 +16,7 @@ const SongContext = createContext() // va a empezar vacío mi contexto
 function SongProvider ({ children }) {
   const [list, setList] = useState([]) // lista de canciones
   const [loading, setLoading] = useState(true) // ¿está cargando?
-  //   const [algomas, setAlgomas] = useState()
+  const [selectedSong, setSelectedSong] = useState({}) // canción seleccionada
 
   // simulamos la llamada a la API
   useEffect(() => {
@@ -29,7 +29,9 @@ function SongProvider ({ children }) {
   // mandamos un objeto
   const data = {
     list,
-    loading
+    loading,
+    selectedSong,
+    setSelectedSong
   }
 
   // el provider es un componente que envuelve a otros componentes
