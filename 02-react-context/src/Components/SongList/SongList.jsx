@@ -1,6 +1,8 @@
 import './songlist.css'
+import { useSongContext } from '@/Hook/useSongContext'
 
 const SongList = () => {
+  const { list, loading, setSelectedSong } = useSongContext()
 
   return (
     <section className='row-container'>
@@ -11,6 +13,9 @@ const SongList = () => {
                 <article
                   key={song.id}
                   className='row-song'
+                  onClick={() => {
+                    setSelectedSong(song)
+                  }}
                 >
                   <h3>{song.title}</h3>
                   <h3>{song.artist}</h3>
