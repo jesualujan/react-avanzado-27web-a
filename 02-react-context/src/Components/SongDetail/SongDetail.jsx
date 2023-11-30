@@ -8,7 +8,7 @@ const SongDetail = () => {
         selectedSong.title
           ? (
             <div>
-              <img src={`https://picsum.photos/seed/${selectedSong.id}/300/300`} alt='Portada del Disco' />
+              <img src={selectedSong.img_url} alt={selectedSong.title} />
               <h4>{selectedSong.title}</h4>
               <h5>{selectedSong.artist}</h5>
               <h6>{selectedSong.year}</h6>
