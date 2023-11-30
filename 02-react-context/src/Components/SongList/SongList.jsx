@@ -2,14 +2,18 @@ import './songlist.css'
 import { useSongContext } from '@/Hook/useSongContext'
 
 const SongList = () => {
-  const { list, loading, setSelectedSong } = useSongContext()
+  const { list, loading, setSelectedSong, search } = useSongContext()
+
+  const filteredSongList = list.filter((song) => {
+    return song.title.toLowerCase().includes(search.toLowerCase())
+  })
 
   return (
     <section className='row-container'>
       {
             loading
               ? <h2>Cargando...</h2>
-              : list.map((song) => (
+              : filteredSongList.map((song) => (
                 <article
                   key={song.id}
                   className='row-song'
