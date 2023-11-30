@@ -13,10 +13,12 @@ const SongContext = createContext() // va a empezar vacío mi contexto
 //* El proveedor es un componente que va a envolver a todos los componentes que quieran
 //* consumir el contexto.
 
+// eslint-disable-next-line react/prop-types
 function SongProvider ({ children }) {
   const [list, setList] = useState([]) // lista de canciones
   const [loading, setLoading] = useState(true) // ¿está cargando?
   const [selectedSong, setSelectedSong] = useState({}) // canción seleccionada
+  const [search, setSearch] = useState('') // Identifica la palabra que pongo en el buscador
 
   // simulamos la llamada a la API
   useEffect(() => {
@@ -31,7 +33,9 @@ function SongProvider ({ children }) {
     list,
     loading,
     selectedSong,
-    setSelectedSong
+    setSelectedSong,
+    search,
+    setSearch
   }
 
   // el provider es un componente que envuelve a otros componentes
