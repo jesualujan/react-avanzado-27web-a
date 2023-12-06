@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form'
 const Signup = () => {
   // función para mandar formulario
   const { register, handleSubmit, formState: { errors } } = useForm()
-  // const onSubmit = data => console.log(data) console.log(onSubmit)
+  // const onSubmit = data => console.log(data) 
 
   const navigate = useNavigate() // creamos una constante que haga uso de ese hook
 
@@ -17,7 +17,6 @@ const Signup = () => {
       if (response.status === 201) {
         navigate('/login') // le indicamos la ruta
         console.log('Usuario creado satisfactoriamente')
-        // console.log(onSubmit)
       }
     } catch (error) {
       console.log('Ocurrio un error en Sigunp', error)
