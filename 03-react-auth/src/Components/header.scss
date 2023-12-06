@@ -1,48 +1,49 @@
-// body {
-//     background-color: #985d5d
+// body{
+//     background-color: #985d5d;
 // }
 
-$menu-color:#3d3d3d;
+$menu-color: #3d3d3d; //declaro mi variable
 
-@mixin header-link{
+
+//declaro mi mixin que me servirá para reutilizar estilos (código)
+@mixin header-link {
     color: $menu-color;
     text-decoration: none;
     letter-spacing: 2px;
 }
 
-@mixin header-border($size:2px){
+@mixin header-border($size:2px ){
     border-bottom: solid $size $menu-color;
 }
 
 .header {
+    background-color: #dadada;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
-    background-color: #dadada;
 
-    &__logo{
-       @include header-link;
+    &__logo {
+        @include header-link;
     }
 
-    &__nav-list{
+    &__nav-list {
         display: flex;
         list-style: none;
         column-gap: 20px;
         flex-wrap: wrap;
     }
 
-    &__item-link{
+    &__item-link {
         @include header-link;
-    }
 
-    //indicamos cual es el estilo activo
-    &--is-active{
-        @include header-border($size:5px);
-    }
-    &:hover{
-        @include header-border()
-    }
+        //indica cual es el estilo activo
+        &--is-active {
+            @include header-border($size:3px);
+        }
 
+        &:hover {
+            @include header-border;
+        }
+    }
 }
-
