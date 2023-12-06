@@ -1,17 +1,33 @@
 import logo from '@/assets/react.svg'
 import '@/styles/form.css'
+import { registerUserService } from '@/Service/userServices'
+import { useNavigate } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
 
 const Signup = () => {
+  // función para mandar formulario
+  const { register, handleSubmit, formState: { errors } } = useForm()
+  // const onSubmit = data => console.log(data) console.log(onSubmit)
+
+  const navigate = useNavigate() // creamos una constante que haga uso de ese hook
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await registerUserService(data)
+      if (response.status === 201) {
+        navigate('/login') // le indicamos la ruta
+        console.log('Usuario creado satisfactoriamente')
+        // console.log(onSubmit)
+      }
+    } catch (error) {
+      console.log('Ocurrio un error en Sigunp', error)
+    }
+  }
+
   return (
     <main className='form-signin w-100 m-auto'>
-      <form>
-        <img
-          className='mb-4'
-          src={logo}
-          alt='React'
-          width='72'
-          height='57'
-        />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <img className='mb-4' src={logo} alt='React' width='72' height='57' />
         <h1 className='h3 mb-3 fw-normal'>Please Sign Up</h1>
 
         <div className='form-floating'>
@@ -21,7 +37,9 @@ const Signup = () => {
             id='first_name'
             name='first_name'
             placeholder='Jesua'
+            {...register('first_name')}
           />
+          <p>{errors.fist_name?.message}</p>
           <label htmlFor='first_name'>First Name</label>
         </div>
 
@@ -32,7 +50,9 @@ const Signup = () => {
             id='last_name'
             name='last_name'
             placeholder='Luján'
+            {...register('last_name')}
           />
+          <p>{errors.last_name?.message}</p>
           <label htmlFor='last_name'>Last Name</label>
         </div>
 
@@ -41,6 +61,7 @@ const Signup = () => {
             className='form-select'
             id='gender'
             name='gender'
+            {...register('gender')}
           >
             <option value=''>Choose</option>
             <option value='M'>Male</option>
@@ -56,7 +77,9 @@ const Signup = () => {
             id='email'
             name='email'
             placeholder='name@example.com'
+            {...register('email')}
           />
+          <p>{errors.email?.message}</p>
           <label htmlFor='email'>Email address</label>
         </div>
 
@@ -67,7 +90,9 @@ const Signup = () => {
             id='password'
             name='password'
             placeholder='Password'
+            {...register('password')}
           />
+          <p>{errors.password?.message}</p>
           <label htmlFor='password'>Password</label>
         </div>
 
