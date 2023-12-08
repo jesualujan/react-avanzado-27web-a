@@ -1,11 +1,27 @@
 import logo from '@/assets/react.svg'
 import { useForm } from 'react-hook-form'
+import { loginUserService } from '@/Service/userServices'
+import { useNavigate } from 'react-router-dom'
 import '@/styles/form.css'
-// import { loginUserService } from '@/Service/userServices'
 
 const Login = () => {
+  // función para mandar formulario
   const { register, handleSubmit, formState: { errors } } = useForm()
-  const onSubmit = data => console.log(data)
+  // const onSubmit = data => console.log(data)
+
+  const navigate = useNavigate() // creamos una constante que haga uso de ese hook
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await loginUserService(data)
+      if (response.status === 200) {
+        navigate('/') // le indicamos la ruta que será home
+        console.log('Usuario creado satisfactoriamente')
+      }
+    } catch (error) {
+      console.log('Ocurrio un error en Sigunp', error)
+    }
+  }
 
   return (
     <main className='form-signin w-100 m-auto'>
