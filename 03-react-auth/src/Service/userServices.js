@@ -11,8 +11,11 @@ const BASE_URL = 'http://localhost:3000' // esta la podemos cambiar si subimos e
 const registerUserService = (data) => axios.post(`${BASE_URL}/register`, data)
 // login
 const loginUserService = (data) => axios.post(`${BASE_URL}/login`, data)
+// Información de un solo usuario
+const getMeUserServices = (jwtToken) => axios.get(`${BASE_URL}/users/me`, { headers: { Authorization: `Bearer ${jwtToken}` } })
 
 export {
   registerUserService,
-  loginUserService
+  loginUserService,
+  getMeUserServices
 }
