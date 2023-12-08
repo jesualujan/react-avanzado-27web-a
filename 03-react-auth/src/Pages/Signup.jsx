@@ -16,10 +16,10 @@ const Signup = () => {
       const response = await registerUserService(data)
       if (response.status === 201) {
         navigate('/login') // le indicamos la ruta
-        console.log('Usuario creado satisfactoriamente', response.data)
+        console.log('Usuario creado satisfactoriamente')
       }
     } catch (error) {
-      console.log('Ocurrio un error en Sigunp', error.message)
+      console.log('Ocurrio un error en Sigunp', error)
     }
   }
 
