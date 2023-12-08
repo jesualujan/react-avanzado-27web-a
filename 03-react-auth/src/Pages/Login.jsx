@@ -1,8 +1,9 @@
-import logo from '@/assets/react.svg'
 import { useForm } from 'react-hook-form'
 import { loginUserService } from '@/Service/userServices'
 import { useNavigate } from 'react-router-dom'
+import { useAuthContext } from '@/Hook/useAuthContext'
 import '@/styles/form.css'
+import logo from '@/assets/react.svg'
 
 const Login = () => {
   // función para mandar formulario
@@ -11,12 +12,15 @@ const Login = () => {
 
   const navigate = useNavigate() // creamos una constante que haga uso de ese hook
 
+  const { login } = useAuthContext()
+
   const onSubmit = async (data) => {
     try {
       const response = await loginUserService(data)
       if (response.status === 200) {
         navigate('/') // le indicamos la ruta que será home
         console.log('Usuario creado satisfactoriamente')
+        login(response.data.token)
       }
     } catch (error) {
       console.log('Ocurrio un error en Sigunp', error)
